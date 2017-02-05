@@ -40,7 +40,7 @@ gulp.task('reload', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src('src/sass/**/*.+(scss|sass)')
+  return gulp.src('src/sass/style.sass')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))

@@ -1,21 +1,19 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    title="Angular Planets"
-
-    link(rel="stylesheet" href="css/style.css")
-
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Angular Planets
+    link(rel='stylesheet', href='css/style.css')
   body
-    header
+    header.header.header--dark
       h1 TITLE
       p Description
-    section
-      input(input type="text" placeholder="Search" name="search")
-    table
-      thead
-        tr
+    section.search.search--grey
+      input.search__input(input='', type='search', placeholder='Search', name='search')
+    table.table
+      thead.table__head.table__head--turquoise
+        tr.table__row
           th name
           th populations
           th diameter
@@ -24,15 +22,17 @@ html(lang="en")
           th terrain
           th films
       tfoot
-      tbody
-        tr
-          td
-          td
-          td
-          td
-          td
-          td
-          td
+        tr.table__row
+          td.table__foot.table__foot--grey(colspan='7')
+      tbody.table__body.table__body--grey
+        tr.table__row
+          td x
+          td x
+          td x
+          td x
+          td x
+          td x
+          td x
     ul
       li First
       li ◄

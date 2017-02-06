@@ -1,13 +1,15 @@
 doctype html
-html(lang='en')
+html(lang='en' ng-app='planetApp')
   head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Angular Planets
     link(rel='stylesheet', href='css/style.css')
-  body
+    script(src='/js/scripts/angular.js')
+    script(src='/js/bundle.js')
+  body(ng-controller="Main as main")
     header.header.header--dark
-      h1 TITLE
+      h1 {{main.title}}
       p Description
     section.search.search--grey
       input.search__input(input='', type='search', placeholder='Search', name='search')
@@ -15,7 +17,7 @@ html(lang='en')
       thead.table__head.table__head--turquoise
         tr.table__row
           th name
-          th populations
+          th population
           th diameter
           th rotation period
           th orbital period
@@ -25,19 +27,27 @@ html(lang='en')
         tr.table__row
           td.table__foot.table__foot--grey(colspan='7')
       tbody.table__body.table__body--grey
-        tr.table__row
-          td x
-          td x
-          td x
-          td x
-          td x
-          td x
-          td x
-    ul
-      li First
-      li ◄
-      li {1}
-      li {2}
-      li ...
-      li ►
-      li Last
+        tr(ng-repeat-start="planet in main.planets[main.page] | orderBy: '-'").table__row
+          td {{planet.name}}
+          td {{planet.population}}
+          td {{planet.diameter}}
+          td {{planet.rotation_period}}
+          td {{planet.orbital_period}}
+          td {{planet.terrain[0]}}
+          td {{planet.films[0]}}
+        tr.table__row(ng-repeat-end ng-repeat="item in planet[planet.biggest] track by $index")
+          td
+          td
+          td
+          td
+          td
+          td {{planet.terrain[$index + 1]}}
+          td {{planet.films[$index + 1]}}
+    section
+      button(ng-click="main.setPage(1)" ng-disabled="!main.data[main.page].previous") First
+      button(ng-click="main.prevPlanetSet()" ng-disabled="main.page < 1") ◄
+      button(ng-click="main.setPage(main.markerOne)" ng-disabled="main.markerOne === '...'") {{main.markerOne}}
+      button(ng-click="main.setPage(main.markerTwo)") {{main.markerTwo}}
+      button(ng-click="main.setPage(main.markerThree)" ng-disabled="main.markerThree === '...'") {{main.markerThree}}
+      button(ng-click="main.nextPlanetSet()" ng-disabled="main.page > 5") ►
+      button(ng-click="main.setPage(7)" ng-disabled="!main.data[main.page].next") Last

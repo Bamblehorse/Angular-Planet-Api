@@ -9,8 +9,11 @@
     import sourcemaps from 'gulp-sourcemaps';
     import autoprefixer from 'gulp-autoprefixer';
     // JS
+    import webpack from 'webpack';
     import babel from 'gulp-babel';
     import uglify from 'gulp-uglify';
+    import ngAnnotate from 'gulp-ng-annotate';
+    import child_process from 'child_process';
     // System Tools
     import del from 'del';
     import chalk from 'chalk';
@@ -50,15 +53,30 @@ gulp.task('sass', () => {
 });
 
 gulp.task('uglify', () => {
- return gulp.src('src/js/*.js')
+ return gulp.src('src/js/**/*.js')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('webpack', (cb) => {
+  child_process.exec('webpack', (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+
+    gulp.src('dist/js/bundle.js')
+    .pipe(plumber())
+    .pipe(ngAnnotate())
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'));
+  });
 });
 
 gulp.task('watch', () => {
@@ -72,7 +90,7 @@ gulp.task('watch', () => {
   gulp.watch('src/**/*.pug',  gulp.series('unPugify', (done) => {
     done();
   }));
-  gulp.watch('src/js/*.js', gulp.series('uglify', 'reload', (done) => {
+  gulp.watch('src/js/*.js', gulp.series('uglify', 'webpack', 'reload', (done) => {
     done();
   }));
 });
@@ -99,7 +117,7 @@ gulp.task('preBuild', (done) => {
 });
 
 // Convert Pug, JS, and SASS
-gulp.task('build', gulp.series('del','preBuild', gulp.parallel('unPugify', 'uglify', 'sass')), (done) => {
+gulp.task('build', gulp.series('del','preBuild','uglify', 'webpack', gulp.parallel('unPugify', 'sass')), (done) => {
   done();
 });
 

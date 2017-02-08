@@ -11,7 +11,6 @@ export default class Main {
     this.markerTwo = 2;
     this.markerThree = '...';
 
-    this.data = [];
     this.planets = [];
     this.count = 0;
 
@@ -19,13 +18,26 @@ export default class Main {
     this.swapi = Swapi;
     this.getPlanets();
   }
-  searchApi() {
+  checkString () {
+    this.search = this.search.replace(/[^\w\s]|[\d]/gi, "");
+  }
+
+  searchUrl() {
+    this.getPlanets(
+      'http://swapi.co/api/planets/?search=' +
+      this.search + '&page=' + (this.page + 1));
+  }
+
+  searchApi () {
+    this.checkString();
     if (this.search !== '') {
-      this.page = 0;
-      this.setMarker();
-      this.getPlanets('http://swapi.co/api/planets/?search=' + this.search);
+        this.searchMode = true;
+        this.page = 0;
+        this.searchUrl();
+        this.setMarker();
     }
     else {
+      this.searchMode = false;
       this.getPlanets();
     }
   }
@@ -40,7 +52,6 @@ export default class Main {
         } else { this.pages = approxPages; }
 
         this.planets[this.page] = res.results;
-        this.data[this.page] = res;
       })
       .then((err) => {
         if (err) { console.log(err); }
@@ -64,7 +75,14 @@ export default class Main {
   }
 
   disabled(page, marker) {
+    if (marker === this.markerTwo && this.pages === 1) {
+      return true;
+    }
     return this.pageIs(page) || this.isDots(marker);
+  }
+
+  isSelected(marker) {
+    return this.pageIs(marker) && !this.isDots(marker);
   }
 
   pageIs(page) {
@@ -81,7 +99,9 @@ export default class Main {
   setPage (page) {
     this.page = page - 1;
     this.setMarker();
-    if (!this.planets[this.page]) {
+    if (this.searchMode === true) {
+        this.searchUrl();
+    } else {
       this.getPlanets();
     }
   }
@@ -96,14 +116,10 @@ export default class Main {
 
   setMarker () {
     const dots = '...';
-    if (this.page > this.pages - 2) {
-      this.markerOne = dots;
-      this.markerTwo = this.page;
-      this.markerThree = this.page + 1;
-      if (this.page === this.pages) {
-        this.markerTwo = this.page - 1;
-        this.markerThree = this.page;
-      }
+    if (this.page + 1 >= this.pages - 1) {
+        this.markerOne = dots;
+        this.markerTwo = this.pages - 1;
+        this.markerThree = this.pages;
     }
     if (this.page < this.pages - 2) {
       this.markerOne = this.page + 1;

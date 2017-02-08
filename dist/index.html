@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="planetApp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular Planets</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="/js/scripts/angular.js"></script>
+    <script src="/js/bundle.js"></script>
+  </head>
+  <body ng-controller="Main as main">
+    <header class="header header--dark">
+      <h1>{{main.title}}</h1>
+      <p>{{main.count}} Planets, Page {{main.page + 1}} of {{main.pages}}</p>
+    </header>
+    <section class="search search--grey"><i class="fa fa-search"></i>
+      <input class="search__input" input="" type="search" placeholder="Search" name="search" ng-model="main.search" ng-Keyup="main.searchApi()">
+    </section>
+    <table class="table">
+      <thead class="table__head table__head--turquoise">
+        <tr>
+          <th class="sort" ng-click="main.setColumn('name')">name</th>
+          <th class="sort" ng-click="main.setColumn('population')">population</th>
+          <th class="sort" ng-click="main.setColumn('diameter')">diameter</th>
+          <th class="sort" ng-click="main.setColumn('rotation_period')">rotation period</th>
+          <th class="sort" ng-click="main.setColumn('orbital_period')">orbital period</th>
+          <th>terrain</th>
+          <th>films</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr class="table__row">
+          <td class="table__foot table__foot--grey" colspan="7"></td>
+        </tr>
+      </tfoot>
+      <tbody class="table__body table__body--grey">
+        <tr class="table__row" ng-repeat-start="planet in planets = (main.planets[main.page] | orderBy:main.column)">
+          <td>{{planet.name}}</td>
+          <td>{{planet.population}}</td>
+          <td>{{planet.diameter}}</td>
+          <td>{{planet.rotation_period}}</td>
+          <td>{{planet.orbital_period}}</td>
+          <td>{{planet.terrain[0]}}</td>
+          <td>{{planet.films[0]}}</td>
+        </tr>
+        <tr class="table__row" ng-repeat-end ng-repeat="item in planet[planet.biggest]">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{planet.terrain[$index + 1]}}</td>
+          <td>{{planet.films[$index + 1]}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <section class="pagination">
+      <button ng-click="main.setPage(1)" ng-disabled="main.pageIs(1)">First</button>
+      <button ng-click="main.prevPage()" ng-disabled="main.pageIs(1)">◄</button>
+      <button ng-click="main.setPage(main.markerOne)" ng-disabled="main.disabled(1, main.markerOne)" ng-class="{selected:main.isSelected(main.markerOne)}">{{main.markerOne}}</button>
+      <button ng-click="main.setPage(main.markerTwo)" ng-disabled="main.disabled(-1, main.markerTwo)" ng-class="{selected:main.isSelected(main.markerTwo)}">{{main.markerTwo}}</button>
+      <button ng-click="main.setPage(main.markerThree)" ng-disabled="main.disabled(main.pages, main.markerThree)" ng-class="{selected:main.isSelected(main.markerThree)}">{{main.markerThree}}</button>
+      <button ng-click="main.nextPage()" ng-disabled="main.pageIs(main.pages)">►</button>
+      <button ng-click="main.setPage(main.pages)" ng-disabled="main.pageIs(main.pages)">Last</button>
+    </section>
+  </body>
+</html>

@@ -6,6 +6,7 @@ export default class Swapi {
   }
 
   get(url) {
+    url.replace('http:', 'https:');
     return this.$http.get(url);
   }
 

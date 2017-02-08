@@ -5,12 +5,15 @@ export default class Main {
     this.title = "Planets";
 
     this.page = 0;
+    this.pages = 0;
+    this.column = 'population';
     this.markerOne = 1;
     this.markerTwo = 2;
     this.markerThree = '...';
 
     this.data = [];
     this.planets = [];
+    this.count = 0;
 
     this.swapi = Swapi;
     this.getPlanets();
@@ -20,6 +23,13 @@ export default class Main {
     console.log(url);
     this.swapi.getPlanets(url)
       .then((res) => {
+        console.log(res);
+        this.count = res.count;
+        let approxPages = this.count / 10;
+        if (approxPages > Math.floor(approxPages)) {
+          this.pages = Math.floor(approxPages + 1);
+        } else { this.pages = approxPages; }
+
         this.planets[this.page] = res.results;
         this.data[this.page] = res;
       })
@@ -28,10 +38,30 @@ export default class Main {
       });
   }
 
+  pageIs(page) {
+    return this.page + 1 === page;
+  }
+
   setPage (page = this.page + 1) {
     this.setMarker(page);
     if (!this.planets[this.page]) {
       this.getPlanets();
+    }
+  }
+
+  setColumn (column) {
+    if (column === this.column) {
+      this.column = "-" + this.column;
+    }
+    else {
+      if (column !== 'name') {
+        this.planets[this.page].forEach( function(planet) {
+          if (planet[column] !== 'unknown') {
+            planet[column] = parseInt(planet[column]);
+          }
+        });
+      }
+      this.column = column;
     }
   }
 

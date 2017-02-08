@@ -24,7 +24,7 @@ export default class Main {
 
   searchUrl() {
     this.getPlanets(
-      'http://swapi.co/api/planets/?search=' +
+      'https://swapi.co/api/planets/?search=' +
       this.search + '&page=' + (this.page + 1));
   }
 

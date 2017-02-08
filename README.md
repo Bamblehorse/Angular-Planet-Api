@@ -10,6 +10,11 @@ You can see the [issue for this section](https://github.com/JonathanDWood/Angula
 [Closed tickets.](https://github.com/JonathanDWood/Angular-Planet-Api/issues?q=is%3Aissue+is%3Aclosed)
 [Milestones.](https://github.com/JonathanDWood/Angular-Planet-Api/milestones)
 
+## Git Flow
+This project uses [Git Flow](http://danielkummer.github.io/git-flow-cheatsheet/)
+
+Note: [Some branches](https://github.com/JonathanDWood/Angular-Planet-Api/branches) were left open to demonstrate the use of feature branching.
+
 ## Important to note
 This repo uses Gulp 4 and if you have gulp 3.9.x installed you may get the following error:
 

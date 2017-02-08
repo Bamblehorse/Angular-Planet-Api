@@ -12,6 +12,31 @@ $grey--light: #f0f5f9
 $font--size: 1rem
 $font--base: Helvetica, Arial
 
+// Table
+$table--border-radius: 10px
+
+table,
+thead
+  tr
+    border-top-right-radius: $table--border-radius
+    border-top-left-radius: $table--border-radius
+
+thead
+  th:first-child
+    border-top-left-radius: $table--border-radius
+  th:last-child
+    border-top-right-radius: $table--border-radius
+
+tfoot
+  td,
+  tr
+    border-bottom-right-radius: $table--border-radius
+    border-bottom-left-radius: $table--border-radius
+
 // Base Styles
 body
   font-family: $font--base
+
+button
+  border: none
+  background-color: transparent

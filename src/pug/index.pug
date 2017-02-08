@@ -11,7 +11,7 @@ html(lang='en' ng-app='planetApp')
   body(ng-controller='Main as main')
     header.header.header--dark
       h1 {{main.title}}
-      p Planets: {{main.count}}, Pages: {{main.pages}}, Current Page: {{main.page + 1}}
+      p {{main.count}} Planets, Page {{main.page + 1}} of {{main.pages}}
     section.search.search--grey
       i.fa.fa-search
       input.search__input(input='', type='search', placeholder='Search', name='search' ng-model='main.search' ng-Keyup="main.searchApi()")

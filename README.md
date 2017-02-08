@@ -2,6 +2,14 @@
 
 This app uses my standard and ever evolving [Gulp worflow](https://github.com/JonathanDWood/Simple-Gulp-Workflow)
 
+## Tickets
+This project uses the [issue system](https://guides.github.com/features/issues/) from GitHub to track tickets. Master branch was [protected](https://github.com/blog/2051-protected-branches-and-required-status-checks) and issues were [linked](https://help.github.com/articles/closing-issues-via-commit-messages/) with tickets.
+
+You can see the [issue for this section](https://github.com/JonathanDWood/Angular-Planet-Api/issues/2) on tickets as an example.
+
+[Closed tickets.](https://github.com/JonathanDWood/Angular-Planet-Api/issues?q=is%3Aissue+is%3Aclosed)
+[Milestones.](https://github.com/JonathanDWood/Angular-Planet-Api/milestones)
+
 ## Important to note
 This repo uses Gulp 4 and if you have gulp 3.9.x installed you may get the following error:
 

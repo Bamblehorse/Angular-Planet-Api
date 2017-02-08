@@ -45,9 +45,9 @@ html(lang='en' ng-app='planetApp')
           td {{planet.films[$index + 1]}}
     section
       button(ng-click="main.setPage(1)" ng-disabled="main.pageIs(1)") First
-      button(ng-click="main.prevPlanetSet()" ng-disabled="main.pageIs(1)") ◄
-      button(ng-click="main.setPage(main.markerOne)" ng-disabled="main.markerOne === '...'") {{main.markerOne}}
+      button(ng-click="main.prevPage()" ng-disabled="main.pageIs(1)") ◄
+      button(ng-click="main.setPage(main.markerOne)" ng-disabled="main.disabled(1, main.markerOne)") {{main.markerOne}}
       button(ng-click="main.setPage(main.markerTwo)") {{main.markerTwo}}
-      button(ng-click="main.setPage(main.markerThree)" ng-disabled="main.markerThree === '...'") {{main.markerThree}}
-      button(ng-click="main.nextPlanetSet()" ng-disabled="main.pageIs(main.pages)") ►
+      button(ng-click="main.setPage(main.markerThree)" ng-disabled="main.disabled(main.pages, main.markerThree)") {{main.markerThree}}
+      button(ng-click="main.nextPage()" ng-disabled="main.pageIs(main.pages)") ►
       button(ng-click="main.setPage(main.pages)" ng-disabled="main.pageIs(main.pages)") Last

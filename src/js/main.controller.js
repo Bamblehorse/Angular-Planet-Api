@@ -38,17 +38,6 @@ export default class Main {
       });
   }
 
-  pageIs(page) {
-    return this.page + 1 === page;
-  }
-
-  setPage (page = this.page + 1) {
-    this.setMarker(page);
-    if (!this.planets[this.page]) {
-      this.getPlanets();
-    }
-  }
-
   setColumn (column) {
     if (column === this.column) {
       this.column = "-" + this.column;
@@ -65,29 +54,47 @@ export default class Main {
     }
   }
 
-  nextPlanetSet () {
-  this.page += 1;
-    this.setPage();
+  disabled(page, marker) {
+    return this.pageIs(page) || this.isDots(marker);
   }
 
-  prevPlanetSet () {
-    this.page -= 1;
-    this.setPage();
+  pageIs(page) {
+    return this.page + 1 === page;
   }
 
-  setMarker (page) {
-    if (page > 5) {
+  isDots(marker) {
+    return marker === '...';
+  }
+
+  setPage (page) {
+    this.page = page - 1;
+    this.setMarker();
+    if (!this.planets[this.page]) {
+      this.getPlanets();
+    }
+  }
+
+  nextPage () {
+    this.setPage(this.page + 2);
+  }
+
+  prevPage () {
+    this.setPage(this.page);
+  }
+
+  setMarker () {
+    if (this.page > this.pages - 2) {
       this.markerOne = '...';
-      this.markerTwo = page;
-      this.markerThree = page + 1;
-      if (page === 7) {
-        this.markerTwo = 6;
-        this.markerThree = 7;
+      this.markerTwo = this.page;
+      this.markerThree = this.page + 1;
+      if (this.page === this.pages) {
+        this.markerTwo = this.page - 1;
+        this.markerThree = this.page;
       }
     }
-    else {
-      this.markerOne = page;
-      this.markerTwo = page + 1;
+    if (this.page < this.pages - 2) {
+      this.markerOne = this.page + 1;
+      this.markerTwo = this.page + 2;
       this.markerThree = '...';
     }
   }

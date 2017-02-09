@@ -59,6 +59,31 @@ gulp
 ```
 If the project hasn't automatically opened in your browser, [click here.](http://localhost:3000)
 
+## Testing
+Testing is done with protractor. Instructions are on the [official website](http://www.protractortest.org/#/).
+
+Start up the Selium Server:
+
+```
+webdriver-manager start
+```
+It can be found here: [http://localhost:4444/wd/hub](http://localhost:4444/wd/hub)
+
+Start the site on localhost:3000 by running gulp:
+```
+gulp
+```
+
+You may have to update your google chrome browser and the webdriver chrome version.
+```
+node_modules/protractor/bin/webdriver-manager update --versions.chrome
+```
+Run protractor
+```
+protractor conf.js
+```
+All tests will now run.
+
 ## Built With
 * [Sublime Text 3](https://www.sublimetext.com/3)
 * [Npm Gulp](https://www.npmjs.com/package/gulp) and related packages - listed in [package.json](package.json)

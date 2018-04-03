@@ -1,21 +1,21 @@
-# Angular-Planet-Api
+# ✨ Angular-Planet-Api ✨
 
-This project is [live on GitHub pages](https://jonathandwood.github.io/Angular-Planet-Api/dist/).
+This project is [live on GitHub pages](https://bamblehorse.github.io/Angular-Planet-Api/dist/).
 
-This app uses my standard and ever evolving [Gulp worflow](https://github.com/JonathanDWood/Simple-Gulp-Workflow)
+This app uses my standard and ever evolving [Gulp worflow](https://github.com/Bamblehorse/Simple-Gulp-Workflow)
 
 ## Tickets
 This project uses the [issue system](https://guides.github.com/features/issues/) from GitHub to track tickets. Master branch was [protected](https://github.com/blog/2051-protected-branches-and-required-status-checks) and issues were [linked](https://help.github.com/articles/closing-issues-via-commit-messages/) with tickets.
 
-You can see the [issue for this section](https://github.com/JonathanDWood/Angular-Planet-Api/issues/2) on tickets as an example.
+You can see the [issue for this section](https://github.com/Bamblehorse/Angular-Planet-Api/issues/2) on tickets as an example.
 
-[Closed tickets.](https://github.com/JonathanDWood/Angular-Planet-Api/issues?q=is%3Aissue+is%3Aclosed)
-[Milestones.](https://github.com/JonathanDWood/Angular-Planet-Api/milestones)
+[Closed tickets.](https://github.com/Bamblehorse/Angular-Planet-Api/issues?q=is%3Aissue+is%3Aclosed)
+[Milestones.](https://github.com/Bamblehorse/Angular-Planet-Api/milestones)
 
 ## Git Flow
 This project uses [Git Flow](http://danielkummer.github.io/git-flow-cheatsheet/)
 
-Note: [Some branches](https://github.com/JonathanDWood/Angular-Planet-Api/branches) were left open to demonstrate the use of feature branching.
+Note: [Some branches](https://github.com/Bamblehorse/Angular-Planet-Api/branches) were left open to demonstrate the use of feature branching.
 
 ## Important to note
 This repo uses Gulp 4 and if you have gulp 3.9.x installed you may get the following error:
@@ -43,7 +43,7 @@ Navigate to a folder on your machine where you are happy to place the project fo
 
 Open up your command-line interface and type:
 ```
-git clone https://github.com/JonathanDWood/Angular-Planet-Api
+git clone https://github.com/Bamblehorse/Angular-Planet-Api
 ```
 Now change directories into the project directory:
 ```
@@ -90,7 +90,7 @@ All tests will now run.
 * [Npm/Node.js](https://nodejs.org/en/download/) and [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) - As above
 
 ## Author
-* **Jonathan Wood** - [Github](https://github.com/JonathanDWood/)
+* **Jonathan Wood** - [Github](https://github.com/Bamblehorse/)
 
 ## License
 See the [license](LICENSE) file for details
